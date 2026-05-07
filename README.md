@@ -48,8 +48,19 @@ mr-memory retrieve "SwiftData migration" --json
 
 This plugin is designed for agentic development frameworks and long-lived AI sessions.
 
+### From PyPI (Recommended)
 ```bash
-git clone https://github.com/mr-marino/mr-memory
+pip install mrmemory
+```
+
+### From GitHub
+```bash
+pip install git+https://github.com/marrocmau/mr-memory.git
+```
+
+### For Development
+```bash
+git clone https://github.com/marrocmau/mr-memory
 cd mr-memory
 pip install -e .
 ```

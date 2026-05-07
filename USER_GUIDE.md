@@ -27,18 +27,21 @@ LLMs have a finite context window. Loading every session log into every prompt l
 
 ## 🚀 Installation & Setup
 
+### Official Package
+```bash
+pip install mrmemory
+```
+
+### From GitHub (Latest Version)
+```bash
+pip install git+https://github.com/marrocmau/mr-memory.git
+```
+
 ### For Integrated Projects
 If `mr-memory` is bundled in your project:
 ```bash
 # Run locally using PYTHONPATH
 PYTHONPATH=./mr-memory/src python3 -m mrmemory.cli audit
-```
-
-### For Standalone Use (Recommended)
-```bash
-cd mr-memory
-pip install -e .
-mr-memory --help
 ```
 
 ---
