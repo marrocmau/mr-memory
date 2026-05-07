@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mr-memory: Intelligent Tiered Memory for AI Agents</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #667eeb;
+            --primary-dark: #4f64d8;
+            --bg: #ffffff;
+            --surface: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --hot: #ef4444;
+            --warm: #f59e0b;
+            --cold: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg);
+        }
+
+        .hero {
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            background: radial-gradient(circle at top right, #eef2ff, transparent);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 4rem 0;
+        }
+
+        .tier-card {
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            transition: transform 0.2s;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .tier-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tier-card.hot h3 { color: var(--hot); }
+        .tier-card.warm h3 { color: var(--warm); }
+        .tier-card.cold h3 { color: var(--cold); }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 4rem 0 1.5rem;
+            text-align: center;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .feature-item::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .code-container {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        .keyword { color: #818cf8; }
+        .comment { color: #64748b; font-style: italic; }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        footer {
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .feature-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <div class="container">
+        <h1>🧠 mr-memory</h1>
+        <p>The tiered memory manager that keeps your AI agents sharp, fast, and cost-effective.</p>
+        <a href="https://github.com/marrocmau/mr-memory" class="btn">Explore on GitHub</a>
+    </div>
+</header>
+
+<main class="container">
+    <section>
+        <h2 class="section-title">End the "Context Bloat" Era</h2>
+        <p style="text-align: center; color: var(--text-muted); max-width: 700px; margin: 0 auto;">
+            AI development generates massive logs. Overloaded context windows slow down response times, spike costs, and degrade precision. <strong>mr-memory</strong> transforms these logs into a structured Knowledge Graph.
+        </p>
+
+        <div class="tier-grid">
+            <div class="tier-card hot">
+                <h3>🔥 Hot Memory</h3>
+                <p>Immediate session context. High visibility for active tasks. Resets every rotation to keep prompts lean.</p>
+            </div>
+            <div class="tier-card warm">
+                <h3>⛅ Warm Memory</h3>
+                <p>The distilled "Source of Truth". Contains persistent decisions, progress, and technical gotchas across sessions.</p>
+            </div>
+            <div class="tier-card cold">
+                <h3>❄️ Cold Memory</h3>
+                <p>Indexed historical archives. Stored off-context but instantly retrievable via hybrid BM25 search.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Key Capabilities</h2>
+        <ul class="feature-list">
+            <li class="feature-item">
+                <strong>Bilingual Compaction:</strong> Automatically extracts tasks and decisions in IT/EN (e.g., <em>Decisione:</em>, <em>ADR:</em>, <em>DONE:</em>).
+            </li>
+            <li class="feature-item">
+                <strong>Token Auditing:</strong> Real-time estimation and health checks (Lean, Growing, Bloated) to monitor your budget.
+            </li>
+            <li class="feature-item">
+                <strong>Rotation Safety:</strong> Atomic resets and mandatory backups ensure you never lose a single byte of history.
+            </li>
+            <li class="feature-item">
+                <strong>Semantic Re-ranking:</strong> A two-phase protocol that combines lexical speed with LLM-level semantic precision.
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 class="section-title">The Pro Workflow</h2>
+        <div class="code-container">
+            <pre><code><span class="comment"># 1. Analyze your current context weight</span>
+mr-memory audit <span class="keyword">--verbose</span>
+
+<span class="comment"># 2. Distill session logs into the Warm Tier</span>
+mr-memory compact <span class="keyword">--backup</span>
+
+<span class="comment"># 3. Archive history and restore performance</span>
+mr-memory rotate <span class="keyword">--keep-last 2</span>
+
+<span class="comment"># 4. Find the needle in the Cold Memory haystack</span>
+mr-memory retrieve <span class="keyword">"SwiftData architecture"</span></code></pre>
+        </div>
+    </section>
+
+    <section style="text-align: center; margin: 4rem 0;">
+        <h2 class="section-title">Visualize Your Knowledge</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-muted);">
+            mr-memory is <strong>Obsidian Ready</strong>. It injects YAML Frontmatter and Wiki-links automatically, allowing you to navigate your architectural decisions visually through a connected Graph.
+        </p>
+        <a href="https://github.com/marrocmau/mr-memory" class="btn">Get Started Now</a>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026. Built by Mr. Marino for modern agentic development.</p>
+        <p style="font-size: 0.875rem; margin-top: 0.5rem;">Repository: <a href="https://github.com/marrocmau/mr-memory" style="color: var(--primary);">marrocmau/mr-memory</a></p>
+    </div>
+</footer>
+
+</body>
+</html>
