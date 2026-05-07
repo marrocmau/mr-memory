@@ -1,0 +1,50 @@
+name: mr-memory tests
+
+on:
+  push:
+    paths:
+      - "mr-memory/**"
+      - "installer/mragentos/mr-memory/**"
+      - "release-package/installer/mragentos/mr-memory/**"
+      - ".github/workflows/mr-memory-tests.yml"
+  pull_request:
+    paths:
+      - "mr-memory/**"
+      - "installer/mragentos/mr-memory/**"
+      - "release-package/installer/mragentos/mr-memory/**"
+      - ".github/workflows/mr-memory-tests.yml"
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }}
+    runs-on: macos-latest
+    env:
+      PYTHONPYCACHEPREFIX: ${{ github.workspace }}/.pycache
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Compile mr-memory sources
+        working-directory: mr-memory
+        run: |
+          python -m compileall -q src tests
+
+      - name: Run mr-memory unit tests
+        working-directory: mr-memory
+        run: |
+          PYTHONPATH=src python -m unittest discover -s tests -v
+
+      - name: Validate bundled installer copy
+        working-directory: installer/mragentos/mr-memory
+        run: |
+          PYTHONPATH=src python -m unittest discover -s tests -v
